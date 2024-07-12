@@ -22,7 +22,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://login-back-xqxf.onrender.com/login', formData);
+            const response = await axios.post('http://localhost:3000/login', formData);
             if (response.status === 200) {
 
                 console.log(response);

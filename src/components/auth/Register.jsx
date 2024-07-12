@@ -25,7 +25,7 @@ const Register = () => {
     // Debugging log to see the form data being sent
 
     try {
-      const response = await axios.post('https://login-back-xqxf.onrender.com/register', formData, {
+      const response = await axios.post('http://localhost:3000/register', formData, {
       });
       if (response.status === 200) {
         alert("user added succesfully")
