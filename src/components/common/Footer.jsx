@@ -162,7 +162,7 @@ const Footer = () => {
         <h3>Conditions of Use & Sale
           Privacy Notice
           Interest-Based Ads
-          &#169; 2023 - 2024 , BY Krushna & Pankaj </h3>
+          &#169; 2023 - 2024 , BY Krushna Waghumbare </h3>
       </div>
     </footer>
   );
