@@ -130,47 +130,48 @@ const PlaceOrder = () => {
         </div>
         <div className="w-full md:w-full xl:w-full p-4">
           <h1 className='text-2xl font-bold'>Customer Details:</h1>
-          <form>
+          <form onSubmit={handlePlaceOrder} >
             <div className='grid grid-cols-12 gap-3 mt-2'>
               <div className='col-span-12 lg:col-span-4 md:col-span-4 sm:col-span-12'>
-                <input type="text" placeholder='Enter Your Name' className='form-control' name="customerName" onChange={(e) => setCustomerName(e.target.value)} />
+                <input type="text" placeholder='Enter Your Name' className='form-control  ' name="customerName" onChange={(e) => setCustomerName(e.target.value)} required />
               </div>
               <div className='col-span-12 lg:col-span-4 md:col-span-4 sm:col-span-12'>
-                <input type="text" placeholder='Enter Your mobile' name='customerMobile' className='form-control' onChange={(e) => setCustomerMobile(e.target.value)} />
+                <input type="text" placeholder='Enter Your mobile' name='customerMobile' className='form-control' onChange={(e) => setCustomerMobile(e.target.value)} required />
               </div>
               <div className='col-span-12 lg:col-span-4 md:col-span-4 sm:col-span-12'>
-                <input type="text" placeholder='Enter Your Email' name='customeremail' className='form-control' onChange={(e) => setCustomerEmail(e.target.value)} />
+                <input type="text" placeholder='Enter Your Email' name='customeremail' className='form-control' onChange={(e) => setCustomerEmail(e.target.value)} required />
               </div>
               <div className='col-span-12 lg:col-span-4 md:col-span-4 sm:col-span-12'>
-                <input type="text" placeholder='Enter Your Alternate mobile number' className='form-control' />
+                <input type="text" placeholder='Enter Your Alternate mobile number' className='form-control' required />
               </div>
               <div className='col-span-12 lg:col-span-4 md:col-span-4 sm:col-span-12'>
-                <input type="text" placeholder='Enter Your Address ' name='address' className='form-control' onChange={(e) => setCustomerAddress(e.target.value)} />
+                <input type="text" placeholder='Enter Your Address ' name='address' className='form-control' onChange={(e) => setCustomerAddress(e.target.value)} required />
               </div>
               <div className='col-span-12 lg:col-span-4 md:col-span-4 sm:col-span-12'>
-                <input type="text" placeholder='Enter Your State' className='form-control' />
+                <input type="text" placeholder='Enter Your State' className='form-control' required  />
               </div>
               <div className='col-span-12 lg:col-span-4 md:col-span-4 sm:col-span-12'>
-                <input type="text" placeholder='Enter Your Country' className='form-control' />
+                <input type="text" placeholder='Enter Your Country' className='form-control' required />
               </div>
               <div className='col-span-12 lg:col-span-12 md:col-span-12 sm:col-span-12'>
                 <h1 className='font-bold text-2xl mt-2'>Payment Method:</h1>
                 <label className='p-4'>
-                  <input type="radio" name="paymentMethod" value="cash" onChange={(e) => setPaymentMethod(e.target.value)} /> Cash On Delivery
+                  <input type="radio" name="paymentMethod" required value="cash" onChange={(e) => setPaymentMethod(e.target.value)} /> Cash On Delivery
                 </label>
                 <label className='p-4'>
-                  <input type="radio" name="paymentMethod" value="online" onChange={(e) => setPaymentMethod(e.target.value)} /> Online Payment
+                  <input type="radio" name="paymentMethod" required value="online" onChange={(e) => setPaymentMethod(e.target.value)} /> Online Payment
                 </label>
               </div>
+            </div>
+            <div className="text-center">
+              <button className="bg-red-400 p-2 rounded" onClick={goback}>Go Back</button>
+              <button className="bg-green-400 p-2 rounded ml-4" type='submit' >Place Order</button>
+              {/* <button className="bg-blue-400 p-2 rounded ml-4" onClick={handleDownloadPdf}>Download PDF</button> */}
             </div>
           </form>
         </div>
       </div>
-      <div className="text-center">
-        <button className="bg-red-400 p-2 rounded" onClick={goback}>Go Back</button>
-        <button className="bg-green-400 p-2 rounded ml-4" onClick={handlePlaceOrder}>Place Order</button>
-        {/* <button className="bg-blue-400 p-2 rounded ml-4" onClick={handleDownloadPdf}>Download PDF</button> */}
-      </div>
+
     </div>
   );
 };

@@ -157,7 +157,7 @@ const Header = () => {
                   </div>
                 )}
               </div>
-              <button><i className="fa-solid fa-cart-shopping w-6 lg:w-8"></i></button>
+              <button onClick={()=>{navigate('/cart')}} ><i className="fa-solid fa-cart-shopping w-6 lg:w-8"></i></button>
               <span className='text-xs hidden lg:inline-block lg:text-xl'>Cart</span>
             </div>
           </div>
