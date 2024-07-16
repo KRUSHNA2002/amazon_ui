@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
-import NotFound from './components/NotFound';
+import NotFound from './NotFound';
 import AddtoCart from './components/AddtoCart';
 import Cart from './components/Cart';
 import MultiDetails from './components/common/MultiDetails';
