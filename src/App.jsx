@@ -10,6 +10,7 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import ProtectedRoute from './components/utils/ProtectedRoute';
 import SearchResults from './components/SearchResults';
+import Profile from './components/common/Profile';
 // import Password from './components/auth/Password';
 // import Otp from './components/auth/Otp';
 // import { AuthProvider } from './components/AuthContext';
@@ -26,6 +27,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route element={<ProtectedRoute/>} >
           <Route path="/placeorder" element={<Placeorder />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
         <Route path="/multidetails" element={<MultiDetails />} />
         <Route path="/search" element={<SearchResults/>} />

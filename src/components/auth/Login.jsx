@@ -28,8 +28,10 @@ const Login = () => {
                 console.log(response);
                 const token = response.data.token;
                 const user = response.data.user.name;
+                const mobile = response.data.user.phone;
                 localStorage.setItem('user', user); // Store token in local storage
                 localStorage.setItem('token', token); // Store token in local storage
+                localStorage.setItem('mobile', mobile); // Store token in local storage
                 navigate('/'); // Redirect to a dashboard page
             }
         } catch (error) {

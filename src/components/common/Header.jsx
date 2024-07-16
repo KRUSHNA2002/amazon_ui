@@ -4,9 +4,8 @@ import Logo from '../../assets/header/logo.png';
 
 const Header = () => {
   const categories = [
-    "Electronics", "Clothing", "Home & Kitchen", "Beauty", "Toys",
-    "Sports", "Automotive", "Books", "Movies & TV", "Music",
-    "Video Games", "Pet Supplies", "Grocery", "Health"
+    "Electronics", "Sport", "golden swag", "addidas", "wearing",
+    "denight light"
   ];
 
   const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +28,16 @@ const Header = () => {
     localStorage.removeItem('user');
     setUser(null);
     navigate('/');
+  };
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+    // Prevent body scrolling when sidebar is open
+    if (!isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
   };
 
   const toggleDropdown = () => {
@@ -63,7 +72,7 @@ const Header = () => {
         <div className="container-fluid mx-auto py-3 flex justify-between items-center flex-wrap">
           <div className="flex items-center">
             <button
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={toggleMenu}
               className="text-white focus:outline-none lg:hidden"
             >
               <svg
@@ -185,8 +194,13 @@ const Header = () => {
             </div>
           </div>
           <div className='sm:hidden inline-flex items-center bg-gray-200 rounded-md mx-auto overflow-hidden h-11 w-full max-w-3xl'>
-            <input type="text" className='p-2 h-full w-full flex-grow' placeholder='Search Amazon.in' />
-            <button className='p-2 bg-orange-400 h-11 w-14'>
+            <input type="text"
+              value={searchInput}
+              onChange={handleInputChange}
+              className='p-2 text-black h-full w-full flex-grow'
+              placeholder='Search Amazon.in'
+            />
+            <button className='p-2 bg-orange-400 h-11 w-14' onClick={handleSearch}>
               <i className="fa-solid fa-magnifying-glass text-black"></i>
             </button>
           </div>
@@ -194,58 +208,65 @@ const Header = () => {
       </header>
 
       {isOpen && (
-        <div className="w-64 lg:hidden absolute top-0 bg-gray-100 text-black p-2">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-dark focus:outline-none lg:hidden"
-          >
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"}
-              />
-            </svg>
-          </button>
-          <Link to="/" className="block py-1 border-b">Home</Link>
-          <Link to="/about" className="block py-1 border-b">About</Link>
-          <Link to="/services" className="block py-1 border-b">Services</Link>
-          <Link to="/contact" className="block py-1">Contact</Link>
-          <div className="border-t mt-2 pt-2">
-            <button
-              onClick={toggleDropdown}
-              className="block w-full text-left px-4 py-2 text-sm"
-            >
-              {getInitials()}
-            </button>
-            {dropdownOpen && (
-              <div className="pl-4">
-                {user ? (
-                  <button
-                    onClick={handleSignOut}
-                    className="block w-full text-left px-4 py-2 text-sm"
-                  >
-                    Sign out
-                  </button>
-                ) : (
-                  <Link
-                    to="/login"
-                    className="block w-full text-left px-4 py-2 text-sm"
-                  >
-                    Sign in
-                  </Link>
+        <>
+          <div className="lg:hidden absolute top-0 left-0 w-full h-full bg-gray-100 z-50 opacity-70"></div>
+          <div className="lg:hidden absolute top-0 left-0 w-full h-full overflow-auto z-50">
+            <div className={`bg-white h-full w-4/5 max-w-sm p-4 fixed top-0 left-0 transform transition-transform ease-in-out duration-5000 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+              <button
+                onClick={toggleMenu}
+                className="text-dark focus:outline-none absolute right-0 top-0 p-4"
+              >
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"}
+                  />
+                </svg>
+              </button>
+              <div className="mt-16">
+                <Link to="/profile" className="block py-2 border-b">Profile</Link>
+                <Link to="/cart" className="block py-2 border-b">Cart</Link>
+                {/* <Link to="/services" className="block py-2 border-b">Services</Link> */}
+                {/* <Link to="/contact" className="block py-2">Contact</Link> */}
+              </div>
+              <div className="border-t mt-4 pt-4">
+                <button
+                  onClick={toggleDropdown}
+                  className="block w-full text-center px-4 py-2 text-sm btn btn-dark"
+                >
+                  {getInitials()}
+                </button>
+                {dropdownOpen && (
+                  <div className="pl-4">
+                    {user ? (
+                      <button
+                        onClick={handleSignOut}
+                        className="block w-full text-left px-4 py-2 text-sm"
+                      >
+                        Sign out
+                      </button>
+                    ) : (
+                      <Link
+                        to="/login"
+                        className="block w-full text-left px-4 py-2 text-sm"
+                      >
+                        Sign in
+                      </Link>
+                    )}
+                  </div>
                 )}
               </div>
-            )}
+            </div>
           </div>
-        </div>
+        </>
       )}
     </>
   );

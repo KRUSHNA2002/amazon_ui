@@ -69,8 +69,8 @@ const Cart = () => {
             </div>
           ))}
         </ul>
-        <div className='p-2 text-center' >
-          <button className='hover:text-blue-500 mt-2 p-4   text-xl ' onClick={() => navigate('/')} >Back To Home</button>
+        <div className='p-1 text-center mb-5 mt-4' >
+          <button className=' btn btn-outline-primary hover:text-white mt-2 p-2 text-xl ' onClick={() => navigate('/')} >Back To Home</button>
         </div>
       </div>
     );
