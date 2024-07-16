@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/header/logo.png';
 
@@ -12,7 +12,8 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [user, setUser] = useState(null);
-
+  const [searchInput, setSearchInput] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,7 +35,6 @@ const Header = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
-  // Function to get the first character of the first word and last word of the user's name
   const getInitials = () => {
     if (user) {
       const nameParts = user.split(' ');
@@ -42,7 +42,19 @@ const Header = () => {
       const lastNameInitial = nameParts[nameParts.length - 1].charAt(0);
       return firstNameInitial + lastNameInitial;
     }
-    return 'sign in'; 
+    return 'sign in';
+  };
+
+  const handleInputChange = (event) => {
+    setSearchInput(event.target.value);
+  };
+
+  const handleSearch = () => {
+    let query = `/search?q=${encodeURIComponent(searchInput)}`;
+    if (selectedCategory) {
+      query += `${encodeURIComponent(selectedCategory)}`;
+    }
+    navigate(query);
   };
 
   return (
@@ -79,16 +91,27 @@ const Header = () => {
           </div>
           <div className='hidden lg:flex items-center bg-gray-200 rounded-md overflow-hidden h-11 w-full max-w-3xl'>
             <button className='bg-gray-300 text-black font-bold p-2 h-11'>
-              <select className='bg-gray-300 w-full h-full' name="" id="">
+              <select
+                className='bg-gray-300 w-full h-full'
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+              >
+                <option value="">All Categories</option>
                 {categories.map((category, index) => (
-                  <option key={index} className="whitespace-nowrap hover:border-b hover:cursor-pointer">
+                  <option key={index} value={category} className="whitespace-nowrap hover:border-b hover:cursor-pointer">
                     {category}
                   </option>
                 ))}
               </select>
             </button>
-            <input type="text" className='p-2 h-full flex-grow text-black' placeholder='Search Amazon.in' />
-            <button className='p-2 bg-orange-400 h-11 w-14'>
+            <input
+              type="text"
+              className='p-2 h-full flex-grow text-black'
+              value={searchInput}
+              onChange={handleInputChange}
+              placeholder='Search Amazon.in'
+            />
+            <button className='p-2 bg-orange-400 h-11 w-14' onClick={handleSearch}>
               <i className="fa-solid fa-magnifying-glass text-black"></i>
             </button>
           </div>
@@ -157,7 +180,7 @@ const Header = () => {
                   </div>
                 )}
               </div>
-              <button onClick={()=>{navigate('/cart')}} ><i className="fa-solid fa-cart-shopping w-6 lg:w-8"></i></button>
+              <button onClick={() => { navigate('/cart') }} ><i className="fa-solid fa-cart-shopping w-6 lg:w-8"></i></button>
               <span className='text-xs hidden lg:inline-block lg:text-xl'>Cart</span>
             </div>
           </div>
