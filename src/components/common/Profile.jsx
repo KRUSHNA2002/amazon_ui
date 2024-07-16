@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Link} from 'react-router-dom'
 const Profile = () => {
   const user = localStorage.getItem('user');
   const mobile = localStorage.getItem('mobile');
@@ -37,7 +37,7 @@ const Profile = () => {
             </div>
           </div>
           <div className="border-t border-gray-200 py-2">
-            <a href="#" className="block text-sm text-gray-800 py-2 hover:bg-gray-200 px-3">Account Settings</a>
+            <Link to="/" className="block text-sm text-gray-800 py-2 hover:bg-gray-200 px-3">Home</Link>
             <a href="#" className="block text-sm text-gray-800 py-2 hover:bg-gray-200 px-3">Orders</a>
             <a href="#" className="block text-sm text-gray-800 py-2 hover:bg-gray-200 px-3">Wishlist</a>
             <a href="#" className="block text-sm text-gray-800 py-2 hover:bg-gray-200 px-3">Settings</a>
