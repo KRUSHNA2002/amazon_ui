@@ -6,6 +6,7 @@ import AddtoCart from './components/AddtoCart';
 import Cart from './components/Cart';
 import MultiDetails from './components/common/MultiDetails';
 import Placeorder from './components/Placeorder';
+import Placeorder2 from './components/Placeorder2';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import ProtectedRoute from './components/utils/ProtectedRoute';
@@ -27,6 +28,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route element={<ProtectedRoute/>} >
           <Route path="/placeorder" element={<Placeorder />} />
+          <Route path="/placeorders" element={<Placeorder2 />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
         <Route path="/multidetails" element={<MultiDetails />} />

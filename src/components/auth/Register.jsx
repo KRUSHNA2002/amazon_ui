@@ -87,7 +87,7 @@ const Register = () => {
             type="submit"
             className="bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg font-bold py-2 px-4 focus:outline-none focus:shadow-outline w-full"
           >
-            Verify mobile number
+            Register Here
           </button>
           <div className="mt-4 text-center">
             <Link to="#" className="text-blue-600 text-sm">Buying for work? Create a free business account</Link>

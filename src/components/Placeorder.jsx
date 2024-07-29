@@ -89,7 +89,7 @@ const PlaceOrder = () => {
 
     // Add footer
     doc.setFontSize(11);
-    doc.text("Thank you for your Shopping!", 85, 230);
+    doc.text("Thank you for Shopping!", 85, 230);
     doc.text("KAP-CD CEO ", 170, 240);
     doc.text("Krushna Waghumbare", 164, 250);
 
