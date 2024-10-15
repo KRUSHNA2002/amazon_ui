@@ -24,7 +24,7 @@ const AddtoCart = () => {
 
       try {
         // Send item to the backend API
-        await axios.post('https://amazon-back-2n80.onrender.com/api/products', imageData);
+        await axios.post('https://amazon-back-2n80.onrender.com/products', imageData);
         alert('Product added to cart and server');
       } catch (error) {
         console.error('Error adding product to server', error);
