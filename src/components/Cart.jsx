@@ -25,7 +25,7 @@ const Cart = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:3000/api/products/${id}`);
+            await axios.delete(`https://amazon-back-2n80.onrender.com/api/products/${id}`);
             const newData = products.filter(item => item.id !== id);
             setProducts(newData);
             localStorage.setItem('alldata', JSON.stringify(newData));
