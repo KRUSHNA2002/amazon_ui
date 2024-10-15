@@ -13,7 +13,7 @@ const Cart = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/api/products');
+                const response = await axios.get('https://amazon-back-2n80.onrender.com/api/products');
                 setProducts(response.data);
             } catch (error) {
                 console.error('Error fetching products:', error);
@@ -67,6 +67,14 @@ const Cart = () => {
             return total + itemPrice;
         }, 0);
         return total - (total * (discount / 100));
+    };
+
+    const getTotalPricewithoutdis = () => {
+        const total = products.reduce((total, item) => {
+            const itemPrice = prices[item.id] || item.price;
+            return total + itemPrice;
+        }, 0);
+        return total ;
     };
 
     const handlePageChange = (newPage) => {
@@ -133,7 +141,7 @@ const Cart = () => {
                 <div className='col-span-12 lg:col-span-4 mt-5'>
                     <h2 className='text-2xl text-center font-bold mb-4 mt-10'>Order Summary</h2>
                     <div className='bg-white shadow-md h-96 p-4'>
-                        <p className='text-xl text-center font-bold'>Total Price: &#8377; {getTotalPrice()}</p>
+                        <p className='text-xl text-center font-bold'>Total Price: &#8377; {getTotalPricewithoutdis()}</p>
                         <div className='mt-4'>
                             <label className='text-xl'>Discount (%): </label>
                             <input
@@ -146,6 +154,8 @@ const Cart = () => {
                                 placeholder="Enter discount percentage"
                             />
                         </div>
+                        <p className='text-xl text-center font-bold'>Total Price: &#8377; {getTotalPrice()}</p>
+                        <p className='text-xl text-center font-bold'>Dis price: &#8377; {Math.round(getTotalPricewithoutdis() - getTotalPrice())}</p>
                         <div className='mt-4'>
                             <button className='bg-blue-500 p-2 rounded w-full text-xl text-white' onClick={handleBuyAll}>Buy All</button>
                         </div>
